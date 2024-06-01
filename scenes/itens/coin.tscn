@@ -59,5 +59,6 @@ shape = SubResource("CircleShape2D_nu4si")
 libraries = {
 "": SubResource("AnimationLibrary_fxo0f")
 }
+autoplay = "active"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
