@@ -436,3 +436,29 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 editor_draw_drag_margin = true
 script = ExtResource("4_rmfan")
+
+[node name="player2" parent="." instance=ExtResource("4_kfxno")]
+top_level = true
+position = Vector2(224, -16)
+scale = Vector2(1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="player2"]
+zoom = Vector2(2, 2)
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+editor_draw_drag_margin = true
+script = ExtResource("4_rmfan")
+
+[node name="player3" parent="." instance=ExtResource("4_kfxno")]
+top_level = true
+position = Vector2(192, 64)
+scale = Vector2(1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="player3"]
+zoom = Vector2(2, 2)
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+editor_draw_drag_margin = true
+script = ExtResource("4_rmfan")
