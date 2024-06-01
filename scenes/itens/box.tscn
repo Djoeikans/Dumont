@@ -1,0 +1,181 @@
+[gd_scene load_steps=10 format=3 uid="uid://m05dely8dr2w"]
+
+[ext_resource type="Script" path="res://scripts/scenario_itens/box.gd" id="1_1tpfi"]
+[ext_resource type="Texture2D" uid="uid://cgsykq8ssi5v6" path="res://assets/itens/Crate-animated.png" id="2_qn7ex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bf817"]
+radius = 24.6869
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5brkb"]
+size = Vector2(16.6667, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l1v0h"]
+radius = 10.6667
+
+[sub_resource type="Animation" id="Animation_73xfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("box_collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("box_hitbox/hitbox_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ibn28"]
+resource_name = "destroy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("box_collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("box_hitbox/hitbox_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7n8td"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("box_collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("box_hitbox/hitbox_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skofx"]
+_data = {
+"RESET": SubResource("Animation_73xfa"),
+"destroy": SubResource("Animation_ibn28"),
+"idle": SubResource("Animation_7n8td")
+}
+
+[node name="Box" type="StaticBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_1tpfi")
+
+[node name="explosion_area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 17
+
+[node name="collision_explosion" type="CollisionShape2D" parent="explosion_area"]
+shape = SubResource("CircleShape2D_bf817")
+debug_color = Color(0.87451, 0, 0.839216, 0.419608)
+
+[node name="explosion_timer" type="Timer" parent="explosion_area"]
+one_shot = true
+
+[node name="texture" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_qn7ex")
+hframes = 11
+
+[node name="box_collision" type="CollisionShape2D" parent="."]
+position = Vector2(4.76837e-07, 4.5)
+shape = SubResource("RectangleShape2D_5brkb")
+
+[node name="box_hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="hitbox_collision" type="CollisionShape2D" parent="box_hitbox"]
+shape = SubResource("CircleShape2D_l1v0h")
+debug_color = Color(0.862745, 0.360784, 0, 0.419608)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_skofx")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="explosion_area" to="." method="_on_explosion_area_body_entered"]
+[connection signal="timeout" from="explosion_area/explosion_timer" to="." method="_on_explosion_timer_timeout"]
+[connection signal="area_entered" from="box_hitbox" to="." method="_on_box_hitbox_area_entered"]
+[connection signal="body_entered" from="box_hitbox" to="." method="_on_box_hitbox_body_entered"]
