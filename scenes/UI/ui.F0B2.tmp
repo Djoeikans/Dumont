@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://0hks21x2htt5"]
+
+[ext_resource type="Script" path="res://scripts/UI/ui.gd" id="1_ika5j"]
+[ext_resource type="Texture2D" uid="uid://5kejmg7pxm53" path="res://assets/UI/life_bar_sprite_sheet.png" id="1_vg4pq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss1yn"]
+atlas = ExtResource("1_vg4pq")
+region = Rect2(0, 0, 85, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80cex"]
+atlas = ExtResource("1_vg4pq")
+region = Rect2(85, 0, 85, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i181j"]
+atlas = ExtResource("1_vg4pq")
+region = Rect2(170, 0, 85, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ld61"]
+atlas = ExtResource("1_vg4pq")
+region = Rect2(255, 0, 85, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0htty"]
+atlas = ExtResource("1_vg4pq")
+region = Rect2(340, 0, 85, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqh23"]
+atlas = ExtResource("1_vg4pq")
+region = Rect2(425, 0, 85, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fu621"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss1yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80cex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i181j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ld61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0htty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqh23")
+}],
+"loop": true,
+"name": &"four_lifes",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"one_life",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"three_lifes",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"two_lifes",
+"speed": 5.0
+}]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_ika5j")
+
+[node name="life" type="Sprite2D" parent="."]
+position = Vector2(-224, 192)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("1_vg4pq")
+hframes = 6
+vframes = 5
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(128, 672)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fu621")
+animation = &"four_lifes"
+autoplay = "four_lifes"
+frame = 1
+frame_progress = 0.892497
