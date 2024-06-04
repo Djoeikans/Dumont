@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hj56ii3ef2cq"]
+[gd_scene load_steps=11 format=3 uid="uid://hj56ii3ef2cq"]
 
 [ext_resource type="Script" path="res://scripts/rooms/initial_room.gd" id="1_3o56u"]
 [ext_resource type="Texture2D" uid="uid://dbbudjltbex0f" path="res://assets/map/sewer_assets/tile_set_sewer.png" id="2_w415g"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cn6bp72tdjieg" path="res://scenes/player.tscn" id="4_kfxno"]
 [ext_resource type="Script" path="res://scripts/rooms/phases_camera.gd" id="4_rmfan"]
 [ext_resource type="PackedScene" uid="uid://0hks21x2htt5" path="res://scenes/UI/ui.tscn" id="6_ag788"]
+[ext_resource type="PackedScene" uid="uid://u7wj338gkh4l" path="res://scenes/UI/pause_menu.tscn" id="7_752nh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aaprp"]
 texture = ExtResource("2_w415g")
@@ -4353,3 +4354,5 @@ editor_draw_drag_margin = true
 script = ExtResource("4_rmfan")
 
 [node name="UI" parent="." instance=ExtResource("6_ag788")]
+
+[node name="pause_menu" parent="." instance=ExtResource("7_752nh")]

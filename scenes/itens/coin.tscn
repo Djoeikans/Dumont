@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://da13cwn653h8k" path="res://assets/itens/gear_sprite_sheet.png" id="2_dr5i1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nu4si"]
-radius = 65.192
+radius = 34.0588
 
 [sub_resource type="Animation" id="Animation_ro7ff"]
 length = 0.001
@@ -45,10 +45,11 @@ _data = {
 }
 
 [node name="gear" type="Area2D"]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_fiyrv")
 
 [node name="texture" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
 texture = ExtResource("2_dr5i1")
 hframes = 8
 

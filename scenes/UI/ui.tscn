@@ -1,8 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://0hks21x2htt5"]
+[gd_scene load_steps=44 format=3 uid="uid://0hks21x2htt5"]
 
 [ext_resource type="Script" path="res://scripts/UI/ui.gd" id="1_ika5j"]
 [ext_resource type="Texture2D" uid="uid://5kejmg7pxm53" path="res://assets/UI/life_bar_sprite_sheet.png" id="1_vg4pq"]
-[ext_resource type="Texture2D" uid="uid://culx0s6i4p6gw" path="res://assets/map/coin.png" id="3_13bgf"]
+[ext_resource type="Texture2D" uid="uid://da13cwn653h8k" path="res://assets/itens/gear_sprite_sheet.png" id="3_7ditn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2iljj"]
 atlas = ExtResource("1_vg4pq")
@@ -242,6 +242,70 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r45d0"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqmyv"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3wum"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20xhx"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fchny"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqfdd"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mly8v"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auc5g"]
+atlas = ExtResource("3_7ditn")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fae6y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r45d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqmyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3wum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20xhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fchny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqfdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mly8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auc5g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_ika5j")
 
@@ -252,18 +316,17 @@ sprite_frames = SubResource("SpriteFrames_fu621")
 animation = &"no_life"
 autoplay = "four_lifes"
 
-[node name="gear" type="Sprite2D" parent="."]
-position = Vector2(48, 592)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_13bgf")
-hframes = 8
-
 [node name="gear_counter" type="Label" parent="."]
-offset_left = 60.0
+offset_left = 92.0
 offset_top = 565.0
-offset_right = 100.0
+offset_right = 132.0
 offset_bottom = 615.0
 theme_override_font_sizes/font_size = 36
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="animation_gear" type="AnimatedSprite2D" parent="."]
+position = Vector2(60, 591)
+sprite_frames = SubResource("SpriteFrames_fae6y")
+autoplay = "default"

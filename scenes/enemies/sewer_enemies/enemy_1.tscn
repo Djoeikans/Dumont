@@ -105,7 +105,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wbho"]
-radius = 11.7647
+radius = 10.6667
 
 [node name="enemy_1" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -137,7 +137,7 @@ collision_layer = 16
 collision_mask = 2
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 1.19209e-07)
+z_index = 1
 shape = SubResource("CircleShape2D_1wbho")
 debug_color = Color(0.810799, 0.411374, 0, 0.42)
 

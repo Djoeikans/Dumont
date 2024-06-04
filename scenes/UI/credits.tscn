@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://jraaes50pobs"]
+
+[ext_resource type="Script" path="res://scripts/UI/credits.gd" id="1_d2gy3"]
+[ext_resource type="Texture2D" uid="uid://b43qjimv2lv3" path="res://assets/UI/credits/credits_bg.png" id="1_s4eeh"]
+[ext_resource type="Theme" uid="uid://b4j1bw66uh6dd" path="res://scenes/UI/themes_bttn/pause_menu.tres" id="3_11q0j"]
+
+[node name="credits" type="CanvasLayer"]
+script = ExtResource("1_d2gy3")
+
+[node name="news" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 211.0
+offset_top = -2.0
+offset_right = 345.0
+offset_bottom = 1278.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.636675, 0.606238)
+texture = ExtResource("1_s4eeh")
+expand_mode = 4
+
+[node name="back_bttn" type="Button" parent="."]
+offset_left = 40.0
+offset_top = 639.0
+offset_right = 145.0
+offset_bottom = 689.0
+theme = ExtResource("3_11q0j")
+text = "Voltar"
+
+[connection signal="button_up" from="back_bttn" to="." method="_on_back_bttn_button_up"]

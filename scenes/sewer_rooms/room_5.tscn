@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://i6e0oxtuiddr"]
+[gd_scene load_steps=9 format=3 uid="uid://i6e0oxtuiddr"]
 
 [ext_resource type="Script" path="res://scripts/rooms/create_rooms.gd" id="1_cvtqj"]
 [ext_resource type="Texture2D" uid="uid://dbbudjltbex0f" path="res://assets/map/sewer_assets/tile_set_sewer.png" id="2_2n2qd"]
 [ext_resource type="Texture2D" uid="uid://xgjxvkr86t07" path="res://assets/map/sewer_assets/mainlevbuild.png" id="3_r8ghl"]
+[ext_resource type="PackedScene" uid="uid://du716oy781elg" path="res://scenes/enemies/sewer_enemies/enemy_1.tscn" id="4_ex8l5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aaprp"]
 texture = ExtResource("2_2n2qd")
@@ -4297,7 +4298,7 @@ sources/0 = SubResource("TileSetAtlasSource_aaprp")
 sources/1 = SubResource("TileSetAtlasSource_605uq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a11oh"]
-size = Vector2(48, 128)
+size = Vector2(80, 128)
 
 [node name="room" type="Node2D"]
 script = ExtResource("1_cvtqj")
@@ -4316,8 +4317,20 @@ position = Vector2(1088, -400)
 [node name="entrance" type="Area2D" parent="."]
 
 [node name="collision" type="CollisionShape2D" parent="entrance"]
-position = Vector2(40, 0)
+position = Vector2(56, 0)
 shape = SubResource("RectangleShape2D_a11oh")
 debug_color = Color(0.744474, 0.210912, 1, 0.42)
+
+[node name="enemy_1" parent="." instance=ExtResource("4_ex8l5")]
+position = Vector2(288, -80)
+
+[node name="enemy_2" parent="." instance=ExtResource("4_ex8l5")]
+position = Vector2(288, 96)
+
+[node name="enemy_3" parent="." instance=ExtResource("4_ex8l5")]
+position = Vector2(448, -80)
+
+[node name="enemy_4" parent="." instance=ExtResource("4_ex8l5")]
+position = Vector2(672, -128)
 
 [connection signal="body_entered" from="entrance" to="." method="_on_entrance_body_entered"]

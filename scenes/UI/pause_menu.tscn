@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://u7wj338gkh4l"]
+
+[ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_481jn"]
+[ext_resource type="Theme" uid="uid://b4j1bw66uh6dd" path="res://scenes/UI/themes_bttn/pause_menu.tres" id="2_2d1h0"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_6rcsf"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_65yee"]
+events = [SubResource("InputEventAction_6rcsf")]
+
+[node name="pause_menu" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_481jn")
+
+[node name="bg_pause_menu" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.321569)
+
+[node name="menu_holder" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -50.5
+offset_right = 63.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="resume_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_2d1h0")
+shortcut = SubResource("Shortcut_65yee")
+text = "Voltar a jogar"
+
+[node name="back_to_menu_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_2d1h0")
+text = "Voltar ao menu"
+
+[node name="quit_game_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_2d1h0")
+text = "Sair do jogo"
+
+[connection signal="button_up" from="menu_holder/resume_btn" to="." method="_on_resume_btn_button_up"]
+[connection signal="button_up" from="menu_holder/back_to_menu_btn" to="." method="_on_back_to_menu_btn_button_up"]
+[connection signal="button_up" from="menu_holder/quit_game_btn" to="." method="_on_quit_game_btn_button_up"]
