@@ -4305,7 +4305,7 @@ sources/0 = SubResource("TileSetAtlasSource_aaprp")
 sources/1 = SubResource("TileSetAtlasSource_605uq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je30y"]
-size = Vector2(64, 256)
+size = Vector2(48, 336)
 
 [node name="room" type="Node2D"]
 script = ExtResource("1_qbuis")
@@ -4322,9 +4322,10 @@ layer_1/tile_data = PackedInt32Array(-917503, 327681, 7, -851967, 327681, 8, -78
 position = Vector2(592, 112)
 
 [node name="entrance" type="Area2D" parent="."]
+collision_layer = 8
 
 [node name="collision" type="CollisionShape2D" parent="entrance"]
-position = Vector2(48, 0)
+position = Vector2(40, 24)
 shape = SubResource("RectangleShape2D_je30y")
 debug_color = Color(0.744474, 0.210912, 1, 0.42)
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://iyljdco1j65p"]
 
 [ext_resource type="Script" path="res://scripts/scenario_itens/coin.gd" id="1_fiyrv"]
-[ext_resource type="Texture2D" uid="uid://culx0s6i4p6gw" path="res://assets/map/coin.png" id="2_dj6qd"]
+[ext_resource type="Texture2D" uid="uid://da13cwn653h8k" path="res://assets/itens/gear_sprite_sheet.png" id="2_dr5i1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nu4si"]
 radius = 65.192
@@ -44,12 +44,12 @@ _data = {
 "active": SubResource("Animation_ggtyd")
 }
 
-[node name="coin" type="Area2D"]
+[node name="gear" type="Area2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_fiyrv")
 
 [node name="texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_dj6qd")
+texture = ExtResource("2_dr5i1")
 hframes = 8
 
 [node name="collision" type="CollisionShape2D" parent="."]

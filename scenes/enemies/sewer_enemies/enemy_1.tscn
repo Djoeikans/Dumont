@@ -147,6 +147,7 @@ light_mask = 16
 visibility_layer = 29
 target_position = Vector2(11, 0)
 collision_mask = 24
+collide_with_areas = true
 
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
