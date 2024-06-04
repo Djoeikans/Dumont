@@ -3,9 +3,10 @@ extends CharacterBody2D
 #Character variables
 @export_category("Variables")
 @export var speed: float = 200.0
+@export var knockback_power: int = 1000
 @onready var punch_collision = $punch/punch_collision as CollisionShape2D
 var direction = Vector2.ZERO
-var knockback_strength = 4000
+var last_direction
 var respawn_time = 0.7
 
 #IMPORTANTE, SÓ É POSSÍVEL FAZER MODIFICAÇÕES NO ANIMATION PLAYER SE O ANIMATION TREE ESTIVER DESATIVADO, de nada
@@ -25,7 +26,7 @@ func _process(delta):
 		player_states.MOVE:
 			move()
 		player_states.PUNCH:
-			sword()
+			punch()
 		player_states.DEAD:
 			dead()
 
@@ -39,6 +40,7 @@ func move():
 		anim_tree.set("parameters/punch/blend_position", direction)
 		anim_state.travel("walk")
 		
+		last_direction = direction
 		velocity = direction.normalized() * speed
 	
 	if(direction == Vector2.ZERO):
@@ -53,7 +55,7 @@ func move():
 	
 	move_and_slide()
 
-func sword():
+func punch():
 	anim_state.travel("punch")
 
 func on_state_reset():
@@ -64,9 +66,22 @@ func dead():
 	await get_tree().create_timer(respawn_time).timeout
 	player_data.life = 4
 	get_tree().reload_current_scene()
-	
-func apply_knockback(direction: Vector2) -> void:
-	print("empurrou")
-	print(direction)
-	velocity = -direction * Vector2(knockback_strength, knockback_strength)
+
+#Essa função chama o shader e aumenta a opacidade dele no sprite para dar o efeito de dano
+func flash():
+	$texture.material.set_shader_parameter("flash_modifier", 0.9)
+	await get_tree().create_timer(0.15).timeout
+	$texture.material.set_shader_parameter("flash_modifier", 0)
+
+#Apllica um empurrão ao player na direção contrária do inimigo
+func knockback():
+	var knockback_direction = -last_direction * knockback_power
+	velocity = knockback_direction
 	move_and_slide()
+
+func _on_hitbox_area_entered(area):
+	if(area.is_in_group("enemies")):
+		flash()
+		knockback()
+		player_data.life -= 1
+	pass

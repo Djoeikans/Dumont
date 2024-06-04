@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5gfc0bbvm6ye"]
+[gd_scene load_steps=9 format=3 uid="uid://c5gfc0bbvm6ye"]
 
 [ext_resource type="Script" path="res://scripts/rooms/exit_room.gd" id="1_k4o5s"]
 [ext_resource type="Texture2D" uid="uid://dbbudjltbex0f" path="res://assets/map/sewer_assets/tile_set_sewer.png" id="2_3wp2g"]
@@ -4303,6 +4303,9 @@ sources/1 = SubResource("TileSetAtlasSource_605uq")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_levwa"]
 size = Vector2(64, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fes31"]
+size = Vector2(22.5, 32)
+
 [node name="exit_room" type="Node2D"]
 script = ExtResource("1_k4o5s")
 
@@ -4322,4 +4325,12 @@ position = Vector2(48, 0)
 shape = SubResource("RectangleShape2D_levwa")
 debug_color = Color(0.744474, 0.210912, 1, 0.42)
 
+[node name="exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
+position = Vector2(420.75, 0)
+shape = SubResource("RectangleShape2D_fes31")
+debug_color = Color(1.20327e-07, 0.448193, 0.270262, 0.42)
+
 [connection signal="body_entered" from="entrance" to="." method="_on_entrance_body_entered"]
+[connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]

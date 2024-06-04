@@ -5,13 +5,13 @@ extends Node2D
 
 func _ready():
 	RoomsGlobals.rooms_to_be_created = randi_range(RoomsGlobals.min_rooms, RoomsGlobals.max_rooms)
-	print(RoomsGlobals.rooms_to_be_created)
-	create_rooms()
+	penis()
 	camera_2d.update_camera(tile_map)
+	print(RoomsGlobals.rooms_to_be_created)
 
-func create_rooms():
+func penis():
 	randomize()
-	var id = randi_range(1, 1)
+	var id = randi_range(1, RoomsGlobals.last_room_id)
 	
 	if(RoomsGlobals.rooms_to_be_created > 1):
 		var s = load("res://scenes/sewer_rooms/room_" + str(id) + ".tscn").instantiate()

@@ -8,4 +8,9 @@ func _on_entrance_body_entered(body):
 		var camera = body.get_node("Camera2D")
 		if(camera):
 			camera.update_camera(tile_map)
-			print("limite pra direita: ", camera.limit_right)
+
+
+func _on_exit_body_entered(body):
+	if(body.name == "player"):
+		await get_tree().create_timer(0.5).timeout
+		get_tree().change_scene_to_file("res://scenes/suburbio/suburbio.tscn")

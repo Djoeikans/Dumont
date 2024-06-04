@@ -5553,7 +5553,7 @@ layer_1/tile_data = PackedInt32Array(327684, 0, 5, 393220, 0, 6, 458756, 0, 7, 1
 z_index = 1
 position = Vector2(233, 595)
 scale = Vector2(1, 1)
-speed = 130.0
+speed = 180.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 scale = Vector2(1.8, 1.8)

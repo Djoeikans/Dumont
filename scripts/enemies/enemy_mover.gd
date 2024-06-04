@@ -8,10 +8,11 @@ enum enemy_states {MOVERIGHT, MOVELEFT, MOVEUP, MOVEDOWN, DEAD}
 @onready var dead_anim = preload("res://scenes/effects/dead_fx.tscn")
 @export var speed: int = 30
 @export var health: int = 3
+@export var knockback_power: int = 1000
+var gear_drop_porcentage: int = 60
 var dir
 
 func _physics_process(delta):
-	
 	if(health <= 0):
 		current_states = enemy_states.DEAD
 
@@ -55,9 +56,11 @@ func dead_animation():
 	loot_gear()
 	
 func loot_gear():
-	var gear = gear_loot.instantiate()
-	gear.global_position = global_position
-	get_tree().get_root().add_child(gear)
+	var draw_number = randf() * 100
+	if(draw_number > gear_drop_porcentage):
+		var gear = gear_loot.instantiate()
+		gear.global_position = global_position
+		get_tree().get_root().add_child(gear)
 
 func move_right():
 	velocity = Vector2.RIGHT * speed

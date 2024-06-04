@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://xgjxvkr86t07" path="res://assets/map/sewer_assets/mainlevbuild.png" id="3_kcdug"]
 [ext_resource type="PackedScene" uid="uid://cn6bp72tdjieg" path="res://scenes/player.tscn" id="4_kfxno"]
 [ext_resource type="Script" path="res://scripts/rooms/phases_camera.gd" id="4_rmfan"]
-[ext_resource type="PackedScene" uid="uid://du716oy781elg" path="res://scenes/enemies/sewer_enemies/enemy_1.tscn" id="6_qqcsa"]
+[ext_resource type="PackedScene" uid="uid://0hks21x2htt5" path="res://scenes/UI/ui.tscn" id="6_ag788"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aaprp"]
 texture = ExtResource("2_w415g")
@@ -4342,6 +4342,7 @@ position = Vector2(512, 16)
 top_level = true
 position = Vector2(80, -27)
 scale = Vector2(1, 1)
+knockback_power = 1200
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(2.5, 2.5)
@@ -4351,5 +4352,4 @@ position_smoothing_speed = 8.0
 editor_draw_drag_margin = true
 script = ExtResource("4_rmfan")
 
-[node name="enemy_1" parent="." instance=ExtResource("6_qqcsa")]
-position = Vector2(336, 16)
+[node name="UI" parent="." instance=ExtResource("6_ag788")]

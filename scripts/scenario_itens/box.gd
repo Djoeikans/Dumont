@@ -23,4 +23,4 @@ func _on_explosion_timer_timeout():
 
 func _on_explosion_area_body_entered(body):
 	if(body.name == "player"):
-		body.apply_knockback(body.direction)
+		body.apply_knockback(body.last_direction)
