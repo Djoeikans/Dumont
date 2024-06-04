@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3jka6y1bstmj" path="res://assets/character/dumont_sprites.png" id="2_ifpfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvh6t"]
-size = Vector2(19, 9.91667)
+size = Vector2(16, 9.91667)
 
 [sub_resource type="Animation" id="Animation_2826g"]
 length = 0.001
@@ -617,6 +617,7 @@ transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(-422.952, -45)
 
 [node name="player" type="CharacterBody2D"]
+z_index = 2
 y_sort_enabled = true
 position = Vector2(129, 96)
 scale = Vector2(3, 3)
@@ -631,7 +632,7 @@ frame = 1
 [node name="collision" type="CollisionShape2D" parent="."]
 visibility_layer = 28
 y_sort_enabled = true
-position = Vector2(-0.5, 34.0417)
+position = Vector2(0, 34.0417)
 shape = SubResource("RectangleShape2D_fvh6t")
 
 [node name="anim" type="AnimationPlayer" parent="."]
@@ -639,7 +640,7 @@ libraries = {
 "": SubResource("AnimationLibrary_5cs77")
 }
 
-[node name="punch" type="Area2D" parent="."]
+[node name="punch" type="Area2D" parent="." groups=["dumont_attack"]]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(32, -11)

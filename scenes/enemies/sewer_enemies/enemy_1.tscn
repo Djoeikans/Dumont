@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=3 uid="uid://du716oy781elg"]
+
+[ext_resource type="Script" path="res://scripts/enemies/sewer_enemies/enemy_1.gd" id="1_002g8"]
+[ext_resource type="Texture2D" uid="uid://cyouh01t4go3w" path="res://assets/enemies/sewer_enemies/enemy_tileset.png" id="1_43xs8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hfeu"]
+
+[sub_resource type="Animation" id="Animation_rsm7d"]
+resource_name = "move_right"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_gi0go"]
+resource_name = "move_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_5sxfc"]
+resource_name = "move_up"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_hcpt1"]
+resource_name = "move_down"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_engki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6h5b"]
+_data = {
+"RESET": SubResource("Animation_engki"),
+"move_down": SubResource("Animation_hcpt1"),
+"move_left": SubResource("Animation_gi0go"),
+"move_right": SubResource("Animation_rsm7d"),
+"move_up": SubResource("Animation_5sxfc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wbho"]
+radius = 11.7647
+
+[node name="enemy_1" type="CharacterBody2D"]
+scale = Vector2(1.7, 1.7)
+collision_layer = 16
+collision_mask = 11
+script = ExtResource("1_002g8")
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("1_43xs8")
+hframes = 5
+vframes = 4
+frame = 1
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6hfeu")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c6h5b")
+}
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -1.76471)
+shape = SubResource("CircleShape2D_1wbho")
+debug_color = Color(0.908658, 0.000115129, 0.735989, 0.42)
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5r4f7ren80ww"]
+
+[ext_resource type="Texture2D" uid="uid://dmywluqalg0sx" path="res://assets/enemies/enemy_dead_fx.png" id="1_fem5l"]
+
+[sub_resource type="Animation" id="Animation_0xeqn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_pnjec"]
+resource_name = "active"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mllu"]
+_data = {
+"RESET": SubResource("Animation_0xeqn"),
+"active": SubResource("Animation_pnjec")
+}
+
+[node name="dead_fx" type="Node2D"]
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("1_fem5l")
+hframes = 5
+frame = 1
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7mllu")
+}
+autoplay = "active"
